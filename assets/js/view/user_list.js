@@ -41,6 +41,29 @@
         $( "#edit-role" ).html(roleOption);
         $('#editUserSubmit').attr("onclick","update_user_details("+id+")");
     }
+    function edit_marriage_popup(email,id,name,role){
+        $('#newMarriageSubmit').click(function() {
+            // Collect the form data
+            console.log(id);
+            var formData = $('#addMarriageForm').serialize();
+        
+            // Send the Ajax request
+            $.ajax({
+              type: 'POST',
+              url: $("#base-url").val()+"user/saveMarriageForm/"+email+"/"+id,
+              data: formData,
+              success: function(response) {
+                // Handle the response from the server
+                console.log(response);
+              },
+              error: function(xhr, status, error) {
+                // Handle any errors
+                console.error(error);
+              }
+            });
+          });
+    }
+
 
     function deactivate_confirmation(email,id){
         $( "#user-email" ).html(email);

@@ -91,7 +91,7 @@ class Admin_model extends CI_Model {
 
             $module = "User Management";
             $activity = "update user ".$oldData[0]['email']."`s details ".$record;
-            $this->insert_log($activity, $module);
+            $this->insert_log($activity, $module); 
             return array('status' => 'success', 'message' => $record);
         }else{
             return array('status' => 'exist', 'message' => '');

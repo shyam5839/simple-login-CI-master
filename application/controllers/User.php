@@ -19,7 +19,19 @@ class User extends CI_Controller {
 
         $this->load->model('mosque_audit_member');
     }
-    
+    public function member_list(){
+
+        $data = array(
+            'formTitle' => 'Member Management',
+            'title' => 'Member Management',
+            'users' => $this->mosque_audit_member->get_user_list(),
+        );
+
+        $this->load->view('frame/header_view');
+        $this->load->view('frame/sidebar_user_nav_view');
+        $this->load->view('user/member_list', $data);
+
+    }
 
     private function ajax_checking(){
         if (!$this->input->is_ajax_request()) {
@@ -47,7 +59,8 @@ class User extends CI_Controller {
     }
     public function saveMarriageForm()
     {
-    
+        $memberId = $this->uri->segment(4);
+    // print_r($memberId);die;
         // Retrieve the member data from the form
         $marriageData = array(
             'ref_no' => $this->input->post('ref_no'),
@@ -73,7 +86,7 @@ class User extends CI_Controller {
 
             
                 // Update the member data in the database
-               $abc = $this->mosque_audit_member->insertMarriageDetails($marriageData);
+               $abc = $this->mosque_audit_member->updateMarriageDetails($marriageData,$memberId);
         }
 // In your Controller_name.php file
 

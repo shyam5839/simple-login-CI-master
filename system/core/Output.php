@@ -456,7 +456,9 @@ class CI_Output {
 			$memory = round(memory_get_usage() / 1024 / 1024, 2) . 'MB';
 			$search = array('{elapsed_time}', '{memory_usage}');
 			$replace = array($elapsed, $memory);
-			$output = str_replace($search, $replace, $output);
+			if ($output !== null) {
+				$output = str_replace($search, $replace, $output);
+			}
 		}
 
 		// --------------------------------------------------------------------
