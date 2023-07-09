@@ -1,4 +1,3 @@
-<!-- <script src="https://kit.fontawesome.com/202b6851b8.js" crossorigin="anonymous"></script> -->
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -26,30 +25,34 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
-                        <th>&nbsp;</th>
+                        <th>Address</th>
+                        <th>MobileNumber</th>
+                        <th>Occupation</th>
+                        <th>BloodGroup</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($users  as $row): ?>
                     <tr>
-                        <td><?php echo $row->name; ?></td>
+                        <td><?php echo $row->member_name; ?></td>
                         <td><?php echo $row->email; ?></td>
-                        <td><?php echo ucfirst($row->role) ?></td>
-
+                        <td><?php echo $row->Address; ?></td>
+                        <td><?php echo $row->Mobile_no; ?></td>                       
+                        <td><?php echo $row->occupation; ?></td>                        
+                        <td><?php echo $row->blood_group; ?></td>
                         <td>
-                            <a class="btn btn-primary" id="user-edit"
-                                onclick="edit_user_popup('<?=$row->email?>','<?=$row->user_id?>','<?=$row->name?>','<?=$row->role?>');"
-                                data-toggle="modal" data-target="#editUser"> EDIT </a>
+                            <!-- <a class="btn btn-primary" id="user-edit"
+                                onclick="edit_user_popup('<?=$row->email?>','<?=$row->id?>','<?=$row->member_name?>');"
+                                data-toggle="modal" data-target="#editUser"><i class="fas fa-edit"></i> EDIT </a> -->
                             <a class="btn btn-warning" id="user-riset"
-                                onclick="reset_confirmation('<?=$row->email?>','<?=$row->user_id?>')"
-                                data-toggle="modal" data-target="#resetConfirm"> RESET </a>
+                                onclick="reset_confirmation('<?=$row->email?>','<?=$row->id?>')"
+                                data-toggle="modal" data-target="#resetConfirm"><i class="fas fa-undo"></i> RESET </a>
                             <a class="btn btn-danger" id="user-delete"
-                                onclick="deactivate_confirmation('<?=$row->email?>','<?=$row->user_id?>');"
-                                data-toggle="modal" data-target="#deactivateConfirm"> DELETE </a>
-                                <a class="btn btn-info" id="member-marriage"
-                                onclick="edit_marriage_popup('<?=$row->email?>','<?=$row->user_id?>','<?=$row->name?>','<?=$row->role?>');"
-                                data-toggle="modal" data-target="#addMarriage"><i class="fas fa-ring"></i> MARRIAGE </a>
+                                onclick="deactivate_confirmation('<?=$row->email?>','<?=$row->id?>');"
+                                data-toggle="modal" data-target="#deactivateConfirm"><i class="fas fa-trash"></i> DELETE </a>
+                            <a class="btn btn-info" id="member-marriage"
+                                onclick="edit_marriage_popup('<?=$row->id?>');"
+                                data-toggle="modal" data-target="#addMarriage"><i class="fa fa-ring"></i> MARRIAGE </a>
 
                         </td>
 
@@ -151,10 +154,6 @@
                         <input type="text" name="spouse_image" id="spouse_image" required>
                         <br><br>
 
-                        <label for="member_id">Member ID:</label>
-                        <input type="text" name="member_id" id="member_id" required>
-                        <br><br>
-
                         <label for="created_by">Created By:</label>
                         <input type="text" name="created_by" id="created_by" required>
                         <br><br>
@@ -247,235 +246,222 @@
                     enctype="multipart/form-data">
                     <input type="hidden" name="id" value="">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Old Registration Number:</label> <input type="text"
                                     name="old_reg_no" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Member Name:</label> <input type="text" name="member_name"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Address:</label> <input type="text" name="Address" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Street:</label> <input type="text" name="street" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Place:</label> <input type="text" name="place" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Pincode:</label> <input type="text" name="pincode" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Residence Phone:</label> <input type="text"
                                     name="residence_phone" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Official Phone:</label> <input type="text"
                                     name="official_phone" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Mobile Number:</label> <input type="text" name="Mobile_no"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Email:</label> <input type="text" name="email" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Jamaath Ward:</label> <input type="text" name="jamaath_ward"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>LSG Ward:</label> <input type="text" name="lsg_ward"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Panchayath:</label> <input type="text" name="panchayath"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Taluk:</label> <input type="text" name="taluk" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Village:</label> <input type="text" name="village" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>District:</label> <input type="text" name="district"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Birth Date:</label> <input type="text" name="birth_date"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Birth Place:</label> <input type="text" name="birth_place"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Father Member ID:</label> <input type="text"
                                     name="father_member_id" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Gender:</label> <input type="text" name="gender" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Death Date:</label> <input type="text" name="death_date"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Buried Date:</label> <input type="text" name="buried_date"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Buried Place:</label> <input type="text" name="buried_place"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Death Reason:</label> <input type="text" name="death_reason"
                                     value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Place of Death:</label> <input type="text"
                                     name="place_of_death" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Existing Subscription Money:</label> <input type="text"
                                     name="existing_subscription_money" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Revised Subscription Money:</label> <input type="text"
                                     name="revised_subscription_money" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Imam's Allowance:</label> <input type="text"
                                     name="imams_allowance" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Mosque Allowance:</label> <input type="text"
                                     name="mosque_allowance" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Deceased or Handicapped:</label> <input type="text"
                                     name="deceased_or_handicapped" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Nominee:</label> <input type="text" name="nominee" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Relation with Nominee:</label> <input type="text"
                                     name="relation_with_nominee" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Ex Jamaath:</label> <input type="text" name="ex_jamaath"
                                     value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Census Taken By:</label> <input type="text"
                                     name="census_taken_by" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Census Taken At:</label> <input type="text"
                                     name="census_taken_at" value="
         "> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>User Image:</label> <input type="file" name="user_image">
                                 <!-- <img src="<?php echo base_url('path/to/user_images/' . $member['user_image']); ?>" alt="User Image" width="100"> -->
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>ID Proof:</label> <input type="text" name="id_proof"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Membership Type:</label> <input type="text"
                                     name="membership_type" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Qualification:</label> <input type="text"
                                     name="qualification" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Blood Group:</label> <input type="text" name="blood_group"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group"> <label>Spouse Name:</label> <input type="text" name="spouse_name"
-                                    value=""> </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group"> <label>Spouse Jamaath:</label> <input type="text"
-                                    name="spouse_jamaath" value=""> </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group"> <label>Spouse Address:</label> <input type="text"
-                                    name="spouse_address" value=""> </div>
-                        </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Main Member Relation:</label> <input type="text"
                                     name="main_member_relation" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Occupation:</label> <input type="text" name="occupation"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Status:</label> <input type="text" name="status" value="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Created By:</label> <input type="text" name="created_by"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Updated By:</label> <input type="text" name="updated_by"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Monthly Income:</label> <input type="text"
                                     name="monthly_income" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Eid Income:</label> <input type="text" name="eid_income"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Bakrid Income:</label> <input type="text"
                                     name="bakrid_income" value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Created At:</label> <input type="text" name="created_at"
                                     value=""> </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group"> <label>Updated At:</label> <input type="text" name="updated_at"
                                     value=""> </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
-                        <button id="newMemberSubmit" type="button" class="btn btn-primary">CREATE</button>
-                        <input id="newMemberSubmit" type="submit" class="btn btn-primary" value="Update">
+                        <input id="newMemberSubmit" type="submit" class="btn btn-primary" value="CREATE">
 
                     </div>
                 </form>
@@ -497,7 +483,7 @@
             <div class="modal-body">
                 <input type="hidden" id="edit-user-id" value="" />
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Name</label> &nbsp;&nbsp;
                             <label class="error" id="edit-error_name"> field is required.</label>
@@ -506,7 +492,7 @@
                                 autofocus>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Email</label> &nbsp;&nbsp;
                             <label class="error" id="edit-error_email"> field is required.</label>

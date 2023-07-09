@@ -76,6 +76,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url()?>assets/js/sb-admin-2.js"></script>
+	<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/202b6851b8.js" crossorigin="anonymous"></script>
 
     <script>
     	window.onload = hideLoginErrors();

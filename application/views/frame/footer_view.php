@@ -9,6 +9,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
+    <!-- font-awesome  -->
+    <script src="https://kit.fontawesome.com/202b6851b8.js" crossorigin="anonymous"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?=base_url()?>assets/js/metisMenu.min.js"></script>

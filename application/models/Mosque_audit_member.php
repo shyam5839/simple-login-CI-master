@@ -21,14 +21,19 @@ class Mosque_audit_member extends CI_Model {
             $this->db->insert('mosque_audit_marriage_certificate', $data);
             return $this->db->insert_id();
         }
-        function get_user_list(){
-            $this->db->select('*');
-            $this->db->from('user');
-            $this->db->where('status', 1);
-            $query=$this->db->get();
-            return $query->result();
-        }
 
+        public function get_member_list($userId) {
+            $this->db->select('*');
+            $this->db->from('mosque_audit_member');
+            $this->db->where('parent_id',$userId);
+            $query=$this->db->get();
+            if ($query) {
+                return $query->result();
+            } else {
+                // Handle the query error, such as logging or throwing an exception
+                return false;
+            }
+        }
         public function updateMarriageDetails($data, $memberId) {
             $existingRow = $this->db->get_where('mosque_audit_marriage_certificate', array('member_id' => $memberId))->row();
         

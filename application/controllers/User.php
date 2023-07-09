@@ -20,13 +20,18 @@ class User extends CI_Controller {
         $this->load->model('mosque_audit_member');
     }
     public function member_list(){
-
-        $data = array(
-            'formTitle' => 'Member Management',
-            'title' => 'Member Management',
-            'users' => $this->mosque_audit_member->get_user_list(),
-        );
-
+        $userId = $this->session->userdata('user_id');
+        // Debug statement
+        echo "User ID: " . $userId;
+        $data = [];
+        if($userId){
+            $data = array(
+                'formTitle' => 'Member Management',
+                'title' => 'Member Management',
+                'users' => $this->mosque_audit_member->get_member_list($userId),
+            );
+        }
+       
         $this->load->view('frame/header_view');
         $this->load->view('frame/sidebar_user_nav_view');
         $this->load->view('user/member_list', $data);
@@ -78,7 +83,6 @@ class User extends CI_Controller {
             'marriage_place' => $this->input->post('marriage_place'),
             'spouse_father' => $this->input->post('spouse_father'),
             'spouse_mother' => $this->input->post('spouse_mother'),
-            'member_id' => $this->input->post('member_id'),
             'created_by' => $this->input->post('created_by'),
             'created_at' => $this->input->post('created_at'),
             'status' => $this->input->post('status'));
@@ -136,9 +140,6 @@ public function update_member()
         'membership_type' => $this->input->post('membership_type'),
         'qualification' => $this->input->post('qualification'),
         'blood_group' => $this->input->post('blood_group'),
-        'spouse_name' => $this->input->post('spouse_name'),
-        'spouse_jamaath' => $this->input->post('spouse_jamaath'),
-        'spouse_address' => $this->input->post('spouse_address'),
         'main_member_relation' => $this->input->post('main_member_relation'),
         'occupation' => $this->input->post('occupation'),
         'status' => $this->input->post('status'),
