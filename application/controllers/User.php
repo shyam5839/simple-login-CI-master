@@ -96,7 +96,14 @@ class User extends CI_Controller {
 
 public function update_member()
 {
-    $id = $this->input->post('id');
+    $id = $this->input->post('user_image');
+    
+        $image = $this->uploadImage();
+    // }
+    // if ($this->input->post('user_image')) {
+    //     $image = $this->uploadImage($this->input->post('user_image'));
+    //     // Further processing of the uploaded image can be done here
+    // }
 
     // Retrieve the member data from the form
     $member_data = array(
@@ -136,6 +143,7 @@ public function update_member()
         'ex_jamaath' => $this->input->post('ex_jamaath'),
         'census_taken_by' => $this->input->post('census_taken_by'),
         'census_taken_at' => $this->input->post('census_taken_at'),
+        'user_image'=>$image,
         'id_proof' => $this->input->post('id_proof'),
         'membership_type' => $this->input->post('membership_type'),
         'qualification' => $this->input->post('qualification'),
@@ -159,7 +167,32 @@ public function update_member()
     print_r($abc);die;
 }
 
-
+private function uploadImage(){
+     // Load the necessary libraries and helpers
+     $this->load->helper('url'); // Only if not already loaded
+     $this->load->library('upload');
+ 
+     // Specify the upload configuration
+     $config['upload_path'] = './uploads/';
+     $config['allowed_types'] = 'gif|jpg|jpeg|png';
+     $config['max_size'] = 12048; // In kilobytes
+ 
+     // Initialize the upload library with the configuration
+     $this->upload->initialize($config);
+ 
+     // Perform the upload and check if it was successful
+     if ($this->upload->do_upload('user_image')) {
+         // Image uploaded successfully
+         $imageData = $this->upload->data();
+         $imagePath = base_url('./uploads/' . $imageData['file_name']);
+         // Further processing or saving of the image can be done here
+     } else {
+         // Image upload failed, handle the error
+         $uploadError = $this->upload->display_errors();
+         // Handle the error accordingly, such as displaying an error message
+     }
+     return $imageData['file_name'];
+}
 
 
 }

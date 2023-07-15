@@ -131,6 +131,24 @@ body {
 .sidebar .nav-third-level li a {
     padding-left: 52px;
 }
+.custom-file-input {
+    display: none;
+  }
+  
+  .custom-file-label::after {
+    content: 'Browse';
+  }
+  
+  .custom-file-input:lang(en)~.custom-file-label::after {
+    content: 'Browse';
+  }
+  
+  .custom-file-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
 
 @media(min-width:768px) {
     .sidebar {
