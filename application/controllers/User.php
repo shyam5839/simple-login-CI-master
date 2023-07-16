@@ -7,21 +7,14 @@ if (!defined('BASEPATH')) {
 class User extends CI_Controller {
 
     public function __Construct() {
-        // echo'dsffsdfwdfsfdsssssssssssssssss';die;
         parent::__Construct();
         if(!$this->session->userdata('logged_in')) {
             redirect(base_url());
         }
-
-        // if($this->session->userdata('role') != 'admin'){
-        //     redirect(base_url());
-        // }
-
         $this->load->model('mosque_audit_member');
     }
     public function member_list(){
         $userId = $this->session->userdata('user_id');
-        // Debug statement
         echo "User ID: " . $userId;
         $data = [];
         if($userId){
@@ -31,11 +24,9 @@ class User extends CI_Controller {
                 'users' => $this->mosque_audit_member->get_member_list($userId),
             );
         }
-       
         $this->load->view('frame/header_view');
         $this->load->view('frame/sidebar_user_nav_view');
         $this->load->view('user/member_list', $data);
-
     }
 
     private function ajax_checking(){
@@ -45,28 +36,15 @@ class User extends CI_Controller {
     }
 
     public function member_form(){
-
-        // $data = array(
-        //     'formTitle' => 'User Management',
-        //     'title' => 'User Management',
-        //     'users' => $this->admin_model->get_user_list(),
-        // );
-
-        // $this->load->view('frame/header_view');
-        // $this->load->view('frame/sidebar_user_nav_view');
         $this->load->view('user/member_form');
 
     }
     public function marriage_form(){
-
         $this->load->view('user/marriage_form');
-
     }
     public function saveMarriageForm()
     {
         $memberId = $this->uri->segment(4);
-    // print_r($memberId);die;
-        // Retrieve the member data from the form
         $marriageData = array(
             'ref_no' => $this->input->post('ref_no'),
             'spouse_name' => $this->input->post('spouse_name'),
@@ -86,26 +64,16 @@ class User extends CI_Controller {
             'created_by' => $this->input->post('created_by'),
             'created_at' => $this->input->post('created_at'),
             'status' => $this->input->post('status'));
-            // print_r($marriageData);die;
+               $this->mosque_audit_member->updateMarriageDetails($marriageData,$memberId);
+               redirect('user/member_list');
 
-            
-                // Update the member data in the database
-               $abc = $this->mosque_audit_member->updateMarriageDetails($marriageData,$memberId);
         }
-// In your Controller_name.php file
 
 public function update_member()
 {
     $id = $this->input->post('user_image');
     
         $image = $this->uploadImage();
-    // }
-    // if ($this->input->post('user_image')) {
-    //     $image = $this->uploadImage($this->input->post('user_image'));
-    //     // Further processing of the uploaded image can be done here
-    // }
-
-    // Retrieve the member data from the form
     $member_data = array(
         'old_reg_no' => $this->input->post('old_reg_no'),
         'member_name' => $this->input->post('member_name'),
@@ -159,12 +127,10 @@ public function update_member()
         'created_at' => $this->input->post('created_at'),
         'updated_at' => $this->input->post('updated_at')
     );
-    // Update the member data in the database
-   $abc = $this->mosque_audit_member->insertMember($member_data);
+   $this->mosque_audit_member->insertMember($member_data);
 
-    // Redirect to a success page or display a success message
-    // redirect('controller_name/success');
-    print_r($abc);die;
+    redirect('user/member_list');
+   
 }
 
 private function uploadImage(){
