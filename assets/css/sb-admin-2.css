@@ -148,6 +148,9 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .right-align {
+    text-align: right;
+  }
   
 
 @media(min-width:768px) {
